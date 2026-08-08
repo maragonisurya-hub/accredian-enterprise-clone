@@ -9,12 +9,12 @@ Built using **Next.js (App Router)** and **Tailwind CSS**, following a component
 ## 🔗 Live Demo
 
 🚀 Vercel:
-https://your-vercel-link.vercel.app
+accredian-enterprise-clone-ochre-pi.vercel.app
+
 
 ## 📂 GitHub Repository
 
-https://github.com/your-username/accredian-enterprise-clone
-
+https://github.com/maragonisurya-hub/accredian-enterprise-clone
 ---
 
 # Features
@@ -91,7 +91,7 @@ data/ (auto-created on first lead submission)
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/accredian-enterprise-clone.git
+git clone https://github.com/maragonisurya-hub/accredian-enterprise-clone.git
 ```
 
 Move into project
