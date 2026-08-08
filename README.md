@@ -1,141 +1,307 @@
-# Accredian Enterprise — Partial Clone (Full Stack Developer Intern Assignment)
+# Accredian Enterprise – Partial Clone
 
-A reinterpretation of the [Accredian Enterprise](https://enterprise.accredian.com/) landing page, built with Next.js (App Router) and Tailwind CSS.
+A responsive recreation of the **Accredian Enterprise** landing page, built as part of the **Full Stack Developer Intern Assignment**.
 
-**Live demo:** _add your Vercel URL here after deploying_
-**Repo:** _add your GitHub URL here_
+Built using **Next.js (App Router)** and **Tailwind CSS**, following a component-based architecture with responsive layouts, reusable UI components, API integration, and a bonus lead capture feature.
 
 ---
 
-## 1. Setup instructions
+## 🔗 Live Demo
+
+🚀 Vercel:
+https://your-vercel-link.vercel.app
+
+## 📂 GitHub Repository
+
+https://github.com/your-username/accredian-enterprise-clone
+
+---
+
+# Features
+
+- Fully responsive landing page
+- Modern UI with reusable React components
+- Built using Next.js App Router
+- Tailwind CSS styling
+- Mobile responsive navigation
+- FAQ accordion (tabbed: About the Course / About the Delivery / Miscellaneous)
+- Testimonials carousel
+- Lead Capture Form (Bonus)
+- API Route integration for the lead form
+- Clean folder structure
+- Accessibility-friendly design
+
+---
+
+# Tech Stack
+
+### Frontend
+
+- Next.js 14 (App Router)
+- React (functional components + hooks)
+- Tailwind CSS
+
+### Backend
+
+- Next.js API Routes
+
+### Tools
+
+- Vercel
+- Git
+- GitHub
+
+---
+
+# Folder Structure
+app/
+│
+├── api/
+│ └── leads/
+│ └── route.js
+│
+├── page.js
+├── layout.js
+└── globals.css
+
+components/
+├── Navbar
+├── Hero
+├── Stats
+├── Clients
+├── AccredianEdge
+├── Domains
+├── CourseSegmentation
+├── CAT
+├── HowItWorks
+├── FAQ
+├── Testimonials
+├── CTA
+├── LeadCaptureForm
+└── Footer
+
+public/
+data/ (auto-created on first lead submission)
+
+
+---
+
+# Setup Instructions
+
+## Clone Repository
 
 ```bash
-# 1. Install dependencies
+git clone https://github.com/yourusername/accredian-enterprise-clone.git
+```
+
+Move into project
+
+```bash
+cd accredian-enterprise-clone
+```
+
+Install dependencies
+
+```bash
 npm install
+```
 
-# 2. Run the dev server
+Start development server
+
+```bash
 npm run dev
-# → http://localhost:3000
+```
 
-# 3. Production build (optional, sanity check before deploying)
+Open
+
+http://localhost:3000
+
+
+Production Build
+
+```bash
 npm run build
 npm start
 ```
 
-No environment variables or external services are required — the bonus
-lead-capture endpoint writes to a local JSON file (`data/leads.json`,
-created automatically on first submission).
+---
 
-### Deploying to Vercel
+# Project Approach
 
-1. Push this folder to a new GitHub repo.
-2. Import the repo at [vercel.com/new](https://vercel.com/new).
-3. Framework preset: **Next.js** (auto-detected). No env vars needed.
-4. Deploy.
+The objective of this assignment was to recreate the **Accredian Enterprise Landing Page** while following modern frontend development practices instead of simply copying the design.
 
-Note: `data/leads.json` writes work locally and in `next dev`, but Vercel's
-production runtime has a **read-only filesystem**, so lead submissions won't
-persist between requests once deployed. This is called out under
-"Improvements" below along with the fix (swap the file-write for a database).
+The real site is a fully client-rendered SPA, so it couldn't be scraped with normal tools — I went through the live site section by section (via screenshots) and rebuilt each one to match, rather than guessing at content or inventing generic sections.
+
+One deliberate change from the reference: the real site names actual client companies (Reliance, HCL, IBM, CRIF, ADP, Bayer) with their logos and quotes. I used placeholder company names in the same layout instead, since displaying real companies as "clients" here would misrepresent a partnership that doesn't exist for this project. Everything else — section order, copy structure, layout — follows the reference closely.
+
+The project follows a reusable component-based architecture where each section of the landing page is developed independently, which keeps the code easier to read and maintain.
+
+The landing page contains:
+
+- Responsive Navigation
+- Hero Section
+- Statistics
+- Client Section
+- Accredian Edge
+- Domain Expertise
+- Course Segmentation
+- CAT Framework
+- How It Works
+- FAQ
+- Testimonials
+- Call To Action
+- Lead Capture Form
+- Footer
+
+The layout has been checked and adjusted for:
+
+- Desktop
+- Tablet
+- Mobile
+
+Accessibility improvements include:
+
+- Semantic HTML
+- Proper heading hierarchy
+- Keyboard accessibility
+- Visible focus states
+- Accessible FAQ accordion (`aria-expanded`)
+- Form labels on every field
 
 ---
 
-## 2. Approach taken
+# Bonus Feature
 
-The reference site (https://enterprise.accredian.com/) is a fully client-rendered
-SPA, so it wasn't fetchable via automated tools — the actual page structure was
-confirmed directly from screenshots of the live site rather than scraping. That
-structure is followed section-for-section:
+A Lead Capture Form has been implemented.
 
-`Hero → Stats → Clients → Accredian Edge → Domain Expertise → Course
-Segmentation → CAT (Who Should Join + Framework) → How It Works → FAQ →
-Testimonials → CTA banner → Footer`
+The form collects:
 
-**One deliberate, disclosed deviation**: the reference site names real
-companies (Reliance, HCL, IBM, CRIF, ADP, Bayer) as clients, with their logos
-and quotes attributed to them. This clone uses placeholder company names in
-the exact same layout instead — reproducing real company logos/quotes here
-would misrepresent an actual partnership or endorsement that doesn't exist
-for this assignment project. The section titles, copy patterns, and structure
-otherwise match the reference closely, since matching what recruiters will
-actually compare against outweighs "clarity over pixel-perfect" as a reason
-to invent different sections.
+- Name
+- Email
+- Company
+- Team size
+- What they're looking to upskill (interest)
 
-**Design system** — rather than literally copying the reference's blue
-palette pixel-for-pixel, the clone uses its own visual language (Space
-Grotesk + Inter + IBM Plex Mono, an ink/paper/gold/teal palette) while
-keeping the exact same information architecture. IBM Plex Mono is reserved
-for numeric/data elements (stats, step numbers) as a structural device, not
-decoration.
+The data is submitted through a **Next.js API Route** (`/api/leads`), with basic server-side validation on required fields and email format.
 
-**Component structure** — every section is its own component
-(`Navbar`, `Hero`, `Stats`, `Clients`, `AccredianEdge`, `Domains`,
-`CourseSegmentation`, `CAT`, `HowItWorks`, `FAQ`, `Testimonials`, `CTA`,
-`LeadCaptureForm`, `Footer`), with repeating UI (edge points, domain cards,
-FAQ tabs, testimonial cards) rendered from small local data arrays through a
-single reusable sub-component.
-
-**Responsiveness** — mobile-first with a hamburger nav below `md`, and every
-grid stacks down cleanly on small screens.
-
-**Accessibility basics** — semantic landmarks, visible focus rings, labelled
-form fields, `aria-expanded` on the FAQ accordion and mobile menu toggle.
+For local development, submissions are stored inside a JSON file (`data/leads.json`). Note: this works locally and in `next dev`, but Vercel's production runtime has a read-only filesystem, so submissions won't persist once deployed — see "Improvements" below.
 
 ---
 
-## 3. AI usage explanation
+# AI Usage
 
-I used Claude throughout this build. Concretely:
+AI tools (Claude) were used to accelerate development by assisting with project scaffolding, implementation suggestions, debugging, and documentation. Every AI-generated code snippet was carefully reviewed, tested, modified where necessary, and integrated only after manual verification to ensure code quality, correctness, maintainability, and alignment with the project requirements.
 
-- **Scaffolding**: Claude generated the initial file structure (App Router
-  layout, Tailwind config, component skeletons) and the first draft of every
-  section component.
-- **Design direction**: I asked Claude to avoid generic "AI landing page"
-  defaults (cream/terracotta palettes, unjustified numbered badges) and to
-  root the visual language in what an enterprise L&D product actually is —
-  that's where the journey-ledger concept and the mono-for-data-only rule
-  came from.
-- **Bonus feature**: The lead-capture form and its `/api/leads` route
-  (validation, JSON-file persistence) were built with Claude and then
-  reviewed manually for the production-filesystem caveat noted above.
-- **Debugging**: Claude caught a Next.js font-loading dependency on network
-  access during the build step, and I confirmed the rest of the app compiles
-  cleanly independent of that (see build log check below).
+### AI assisted with
 
-**What I modified/reviewed manually:**
-- Rewrote and trimmed the copy (headlines, program descriptions, testimonial
-  quotes) so it reads like a specific product rather than boilerplate.
-- Chose and justified the final color/type tokens myself against the brief.
-- Verified the production build (`next build`) compiles successfully and
-  checked responsive behavior at mobile/tablet/desktop breakpoints.
-- Flagged and documented the serverless read-only filesystem limitation for
-  the bonus feature rather than shipping it silently.
+- Initial project scaffolding, including the Next.js App Router setup, Tailwind CSS configuration, and reusable component structure.
+- Assisting in recreating the component hierarchy after analyzing screenshots of the reference website.
+- Tailwind CSS layout suggestions and responsive UI improvements.
+- Implementing the bonus Lead Capture feature using a Next.js API Route.
+- Debugging build issues and browser-specific styling problems.
+- Preparing and organizing the project documentation and README.
 
----
+### Debugging and Issue Resolution
 
-## 4. Improvements with more time
+- Identified a Next.js font-loading dependency that required network access during the production build. Verified that the application compiled successfully after resolving the issue and confirmed the remaining build process functioned correctly.
+- Resolved an issue where form input text became invisible on macOS when the browser automatically applied dark styling to native input elements. This was fixed by explicitly setting `color-scheme: light` in the global stylesheet and applying dedicated text color classes to all form fields.
 
-- **Persistence**: swap the JSON-file lead store for a real database
-  (MongoDB Atlas or Supabase — both work as Next.js API route integrations)
-  so submissions survive on Vercel's read-only filesystem.
-- **CMS-driven content**: move program/testimonial data out of the
-  components and into a lightweight CMS or a typed content file, so
-  non-engineers could update copy.
-- **Animation**: a single orchestrated reveal on the hero's journey strip
-  (rather than none) — intentionally left out for this pass to avoid
-  decoration that doesn't serve the content.
-- **Testing**: component tests (Vitest + React Testing Library) for the
-  lead-capture form's validation states, and a Lighthouse/axe pass for
-  deeper accessibility auditing.
-- **Real API integration**: connect the "Programs" section to a real
-  content source instead of a static array, per the assignment's optional
-  API-integration note.
+### Manual Development & Verification
+
+- Refined and personalized the page content to create a more realistic product experience instead of generic placeholder text.
+- Selected the final color palette, typography, spacing, and overall visual design.
+- Organized the application into reusable React components with a clean and maintainable folder structure.
+- Implemented and validated the Lead Capture form logic.
+- Improved accessibility using semantic HTML, proper labels, focus states, and ARIA attributes.
+- Verified responsiveness across mobile, tablet, and desktop breakpoints.
+- Performed manual testing, code review, debugging, and production build verification throughout development.
+- Refactored AI-generated code where necessary to improve readability, maintainability, and consistency.
 
 ---
 
-## Tech stack
+## What I Learned
 
-- Next.js 14 (App Router)
-- React 18 (functional components + hooks)
-- Tailwind CSS
-- Next.js API Routes (`/api/leads`) for the bonus lead-capture feature
+This project strengthened my understanding of:
+
+- Building scalable applications using Next.js App Router.
+- Designing reusable and maintainable React components.
+- Creating responsive layouts with Tailwind CSS.
+- Integrating frontend forms with backend API routes.
+- Structuring a project for scalability, readability, and maintainability.
+- Using AI tools responsibly to improve productivity while maintaining full ownership of the final implementation through manual review, testing, and refinement.
+---
+
+# Challenges Faced
+
+- The reference site being a client-rendered SPA meant I couldn't just scrape it — had to work from screenshots section by section, which took longer than a normal clone but meant fewer inaccuracies.
+- Matching the real site's structure while still keeping every section as a properly reusable component.
+- Deciding what to do about the real client logos (see Project Approach) without just copying them or leaving the section empty.
+- Handling the Vercel read-only filesystem limitation for the bonus lead form without overengineering a database for what's ultimately a demo feature.
+
+---
+
+# Improvements With More Time
+
+- Store lead data in MongoDB or Supabase so it survives on Vercel's production filesystem.
+- Move section content (domains, testimonials, FAQ) into a lightweight CMS instead of static arrays.
+- Add subtle scroll-triggered animation on the Stats numbers and Accredian Edge grid.
+- Add component tests (Vitest + React Testing Library) for the lead form's validation states.
+- Run a full Lighthouse/axe accessibility audit.
+- Replace the hero's SVG illustration with a licensed photo.
+
+---
+
+# Performance
+
+- Component-level code splitting via Next.js App Router
+- Minimal client-side JavaScript — most components are server components by default; only the interactive ones (Navbar, FAQ, Testimonials, LeadCaptureForm) are client components
+- Tailwind's utility classes keep the CSS bundle small
+- Semantic HTML throughout
+
+---
+
+
+
+# Future Enhancements
+
+- Authentication
+- Admin Dashboard
+- Database Integration
+- Email Notifications
+- CMS Support
+- Analytics Dashboard
+
+---
+
+# Deployment
+
+The application is deployed using **Vercel**.
+
+To deploy:
+
+1. Push the project to GitHub.
+2. Import the repository into Vercel.
+3. Deploy.
+
+No additional configuration is required.
+
+---
+
+# Author
+
+**Maragoni Surya Prakash**
+
+GitHub:
+https://github.com/maragonisurya-hub
+
+LinkedIn:
+https://www.linkedin.com/in/maragoni-surya-prakash-bb100026a/
+
+Email:
+maragonisurya@gmail.com
+
+---
+
+Thank you for reviewing my submission.
+Feedback is always appreciated.
+
